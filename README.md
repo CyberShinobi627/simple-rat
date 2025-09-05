@@ -49,7 +49,7 @@ just write chbuff and the buffer size in bytes by default it is set to 1048576 b
 ## Other details
 
 1. **Converting into exe:**  
-You can convert the **victim.py** into an windows executable or exe file using other tool or python packages like **pyinstaller**.  
+You can convert the **victim.py** into an windows executable or exe file using other tool or python packages like **PyInstaller**.  
 To install pyinstaller run: `pip install pyinstaller`  
 To convert into exe run: `pyinstaller victim.py --onefile --noconsole`  
 Then send the exe file to the victim machine.

