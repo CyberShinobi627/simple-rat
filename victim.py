@@ -33,7 +33,7 @@ def foreground_task() -> None:
 			# configuring the entry validation back to key
 			entry.config(validate="key")
 		
-		except (SyntaxError, ZeroDivisionError):
+		except (SyntaxError, ZeroDivisionError, NameError):
 			# configuring the entry validation to none
 			entry.config(validate="none")
 			# clearing the entry widget
