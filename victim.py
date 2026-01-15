@@ -46,33 +46,25 @@ def foreground_task() -> None:
 			entry.config(validate="key")
 
 	def backspace() -> None:
-		# storing the expression entered in the entry widget
-		expression = entry.get()
 		# configuring the entry validation to none
 		entry.config(validate="none")
-		# clearing the entry widget
-		entry.delete(0, "end")
-		# reinserting all the expression except the last character
-		entry.insert(0, expression[:-1])
+		cur_pos = entry.index("insert")
+		# if the cursor postion not 0
+		if cur_pos:
+			# deleting the character at cursor position
+			entry.delete(cur_pos - 1)
 		# configuring the entry validation back to key
 		entry.config(validate="key")
 	
 	def delete() -> None:
-		# storing the expression entered in the entry widget
-		expression = entry.get()
 		# storing the current cursor position
-		cur_pos = entry.index(tk.INSERT)
+		cur_pos = entry.index("insert")
 		# configuring the entry validation to none
 		entry.config(validate="none")
-		# clearing the entry widget
-		entry.delete(0, "end")
-		# reinserting all the expression except the character where the current cursor position lies
-		entry.insert(0, expression[:cur_pos] + expression[cur_pos+1:])
-		# increamenting the cursor postion by 1
-		cur_pos += 1
+		# deleting the character at cursor position
+		entry.delete(cur_pos)
 		# configuring the entry validation back to key
 		entry.config(validate="key")
-		entry.icursor(max(cur_pos - 1, 0))
 
 	def clear() -> None:
 		# configuring the entry validation to none
