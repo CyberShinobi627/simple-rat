@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # victim script
 
 import os
@@ -54,6 +56,23 @@ def foreground_task() -> None:
 		entry.insert(0, expression[:-1])
 		# configuring the entry validation back to key
 		entry.config(validate="key")
+	
+	def delete() -> None:
+		# storing the expression entered in the entry widget
+		expression = entry.get()
+		# storing the current cursor position
+		cur_pos = entry.index(tk.INSERT)
+		# configuring the entry validation to none
+		entry.config(validate="none")
+		# clearing the entry widget
+		entry.delete(0, "end")
+		# reinserting all the expression except the character where the current cursor position lies
+		entry.insert(0, expression[:cur_pos] + expression[cur_pos+1:])
+		# increamenting the cursor postion by 1
+		cur_pos += 1
+		# configuring the entry validation back to key
+		entry.config(validate="key")
+		entry.icursor(max(cur_pos - 1, 0))
 
 	def clear() -> None:
 		# configuring the entry validation to none
@@ -99,6 +118,12 @@ def foreground_task() -> None:
 	root.bind("<Return>", lambda event: evaluate())
 	# if the user enters the the 'escape' key then it will also clear the entry widget
 	root.bind("<Escape>", lambda event: clear())
+
+	ERROR_CHARS = {'e', 'r', 'o'}
+	# manual backspace logic for "Error" message
+	root.bind("<BackSpace>", lambda event: backspace() if set(entry.get().lower()) <= ERROR_CHARS else None)
+	# manual delete logic for "Error" message
+	root.bind("<Delete>", lambda event: delete() if set(entry.get().lower()) <= ERROR_CHARS else None)
 
 	# defining a string for the numeric buttons
 	BUTTONS = "789456123"

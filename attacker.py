@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # attacker script
 
 """
@@ -34,15 +36,15 @@ def main(host: str, port: int) -> None:
 				break
 		
 		# return all the data except <END>
-		return full_msg[:-5]
+		return full_msg.removesuffix(b"<END>")
 
 	def get_file(cmd: str, op: bytes) -> None:
 		# defining known error messages
-		ERROR_MSG = [
+		ERROR_MSG = {
 			b"Invalid command !!!",
 			b"Invalid File Name or Path !!!",
 			b"Not a File !!!"
-		]
+		}
 		
 		# if the output is any of the known error messages then print the error message and return
 		if op in ERROR_MSG:
