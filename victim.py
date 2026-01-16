@@ -46,9 +46,10 @@ def foreground_task() -> None:
 			entry.config(validate="key")
 
 	def backspace() -> None:
+		# storing the current cursor position
+		cur_pos = entry.index("insert")
 		# configuring the entry validation to none
 		entry.config(validate="none")
-		cur_pos = entry.index("insert")
 		# if the cursor postion not 0
 		if cur_pos:
 			# deleting the character at cursor position
